@@ -4843,6 +4843,8 @@ sub process {
 				if|for|while|switch|return|case|
 				volatile|__volatile__|
 				__attribute__|format|__extension__|
+				wl_list_for_each|
+				wl_list_for_each_reverse|
 				asm|__asm__)$/x)
 			{
 			# cpp #define statements have non-optional spaces, ie
