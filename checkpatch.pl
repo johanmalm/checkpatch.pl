@@ -5938,8 +5938,7 @@ sub process {
 						$sum_allowed += $_;
 					}
 					if ($sum_allowed == 0) {
-						WARN("BRACES",
-						     "braces {} are not necessary for any arm of this statement\n" . $herectx);
+						# do nothing
 					} elsif ($sum_allowed != $allow &&
 						 $seen != $allow) {
 						CHK("BRACES",
