@@ -3929,52 +3929,6 @@ sub process {
 			$last_blank_line = $linenr;
 		}
 
-# check for missing blank lines after declarations
-# (declarations must have the same indentation and not be at the start of line)
-		if (($prevline =~ /\+(\s+)\S/) && $sline =~ /^\+$1\S/) {
-			# use temporaries
-			my $sl = $sline;
-			my $pl = $prevline;
-			# remove $Attribute/$Sparse uses to simplify comparisons
-			$sl =~ s/\b(?:$Attribute|$Sparse)\b//g;
-			$pl =~ s/\b(?:$Attribute|$Sparse)\b//g;
-			if (($pl =~ /^\+\s+$Declare\s*$Ident\s*[=,;:\[]/ ||
-			# function pointer declarations
-			     $pl =~ /^\+\s+$Declare\s*\(\s*\*\s*$Ident\s*\)\s*[=,;:\[\(]/ ||
-			# foo bar; where foo is some local typedef or #define
-			     $pl =~ /^\+\s+$Ident(?:\s+|\s*\*\s*)$Ident\s*[=,;\[]/ ||
-			# known declaration macros
-			     $pl =~ /^\+\s+$declaration_macros/) &&
-			# for "else if" which can look like "$Ident $Ident"
-			    !($pl =~ /^\+\s+$c90_Keywords\b/ ||
-			# other possible extensions of declaration lines
-			      $pl =~ /(?:$Compare|$Assignment|$Operators)\s*$/ ||
-			# not starting a section or a macro "\" extended line
-			      $pl =~ /(?:\{\s*|\\)$/) &&
-			# looks like a declaration
-			    !($sl =~ /^\+\s+$Declare\s*$Ident\s*[=,;:\[]/ ||
-			# function pointer declarations
-			      $sl =~ /^\+\s+$Declare\s*\(\s*\*\s*$Ident\s*\)\s*[=,;:\[\(]/ ||
-			# foo bar; where foo is some local typedef or #define
-			      $sl =~ /^\+\s+$Ident(?:\s+|\s*\*\s*)$Ident\s*[=,;\[]/ ||
-			# known declaration macros
-			      $sl =~ /^\+\s+$declaration_macros/ ||
-			# start of struct or union or enum
-			      $sl =~ /^\+\s+(?:static\s+)?(?:const\s+)?(?:union|struct|enum|typedef)\b/ ||
-			# start or end of block or continuation of declaration
-			      $sl =~ /^\+\s+(?:$|[\{\}\.\#\"\?\:\(\[])/ ||
-			# bitfield continuation
-			      $sl =~ /^\+\s+$Ident\s*:\s*\d+\s*[,;]/ ||
-			# other possible extensions of declaration lines
-			      $sl =~ /^\+\s+\(?\s*(?:$Compare|$Assignment|$Operators)/)) {
-				if (WARN("LINE_SPACING",
-					 "Missing a blank line after declarations\n" . $hereprev) &&
-				    $fix) {
-					fix_insert_line($fixlinenr, "\+");
-				}
-			}
-		}
-
 # check for spaces at the beginning of a line.
 # Exceptions:
 #  1) within comments
