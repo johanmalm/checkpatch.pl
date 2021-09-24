@@ -7382,12 +7382,6 @@ sub process {
 	}
 
 	print report_dump();
-	if ($summary && !($clean == 1 && $quiet == 1)) {
-		print "$filename " if ($summary_file);
-		print "total: $cnt_error errors, $cnt_warn warnings, " .
-			(($check)? "$cnt_chk checks, " : "") .
-			"$cnt_lines lines checked\n";
-	}
 
 	if ($quiet == 0) {
 		# If there were any defects found and not already fixing them
