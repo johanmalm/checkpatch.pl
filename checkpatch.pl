@@ -5085,15 +5085,6 @@ sub process {
 								$line_fixed = 1;
 							}
 						}
-					} elsif ($ctx =~ /Wx[^WCE]|[^WCE]xW/) {
-						if (ERROR("SPACING",
-							  "need consistent spacing around '$op' $at\n" . $hereptr)) {
-							$good = rtrim($fix_elements[$n]) . " " . trim($fix_elements[$n + 1]) . " ";
-							if (defined $fix_elements[$n + 2]) {
-								$fix_elements[$n + 2] =~ s/^\s+//;
-							}
-							$line_fixed = 1;
-						}
 					}
 
 				# A colon needs no spaces before when it is
