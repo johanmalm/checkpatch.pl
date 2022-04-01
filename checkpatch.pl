@@ -2559,6 +2559,7 @@ sub exclude_global_initialisers {
 
 sub process {
 	my $filename = shift;
+	print($filename, "\n");
 
 	my $linenr=0;
 	my $prevline="";
