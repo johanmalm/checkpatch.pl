@@ -53,7 +53,14 @@ my %camelcase = ();
 my %use_type = ();
 my @use = ();
 my %ignore_type = ();
-my @ignore = ();
+my @ignore = (
+	"SPLIT_STRING",
+	"COMPLEX_MACRO",
+	"PREFER_KERNEL_TYPES",
+	"LOGICAL_CONTINUATIONS",
+	"PARENTHESIS_ALIGNMENT",
+	"OPEN_ENDED_LINE",
+);
 my $help = 0;
 my $configuration_file = ".checkpatch.conf";
 my $max_line_length = 100;
