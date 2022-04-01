@@ -5606,6 +5606,14 @@ sub process {
 			    $var !~ /^(?:[A-Z]+_){1,5}[A-Z]{1,3}[a-z]/ &&
 #Ignore Page<foo> variants
 			    $var !~ /^(?:Clear|Set|TestClear|TestSet|)Page[A-Z]/ &&
+
+#Ignore some pango and libxml2 CamelCase variants
+			    $var !~ /^(?:PangoLayout|PangoFontDescription)/ &&
+			    $var !~ /^(?:xmlNode|xmlIsBlankNode|xmlAttr)/ &&
+			    $var !~ /^(?:xmlGetProp|xmlChar|xmlDoc)/ &&
+			    $var !~ /^(?:xmlReadFile|xmlDocGetRootElement)/ &&
+			    $var !~ /^(?:xmlFreeDoc|xmlCleanupParser)/ &&
+
 #Ignore SI style variants like nS, mV and dB
 #(ie: max_uV, regulator_min_uA_show, RANGE_mA_VALUE)
 			    $var !~ /^(?:[a-z0-9_]*|[A-Z0-9_]*)?_?[a-z][A-Z](?:_[a-z0-9_]+|_[A-Z0-9_]+)?$/ &&
