@@ -5611,10 +5611,14 @@ sub process {
 
 #Ignore some pango and libxml2 CamelCase variants
 			    $var !~ /^(?:PangoLayout|PangoFontDescription)/ &&
+			    $var !~ /^(?:PangoTabArray|PangoRectangle)/ &&
 			    $var !~ /^(?:xmlNode|xmlIsBlankNode|xmlAttr)/ &&
 			    $var !~ /^(?:xmlGetProp|xmlChar|xmlDoc)/ &&
 			    $var !~ /^(?:xmlReadFile|xmlDocGetRootElement)/ &&
 			    $var !~ /^(?:xmlFreeDoc|xmlCleanupParser)/ &&
+			    $var !~ /^(?:xmlParseMemory)/ &&
+			    $var !~ /^(?:GString|GError)/ &&
+			    $var !~ /^(?:XKB_KEY_XF86Switch_VT_1)/ &&
 
 #Ignore SI style variants like nS, mV and dB
 #(ie: max_uV, regulator_min_uA_show, RANGE_mA_VALUE)
