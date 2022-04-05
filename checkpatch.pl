@@ -60,6 +60,8 @@ my @ignore = (
 	"LOGICAL_CONTINUATIONS",
 	"PARENTHESIS_ALIGNMENT",
 	"OPEN_ENDED_LINE",
+	"MACRO_ARG_REUSE",
+	"PREFER_FALLTHROUGH",
 );
 my $help = 0;
 my $configuration_file = ".checkpatch.conf";
