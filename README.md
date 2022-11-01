@@ -4,19 +4,19 @@ according to Drew Devault's [cstyle]
 ## Usage
 
 ```
-./checkpatch.pl --no-tree --terse --file <file>
+./checkpatch.pl --no-tree --terse --strict --file <file>
 ```
 
 To batch-process, try something like:
 
 ```
-find src/ -name "*.c" -type f -exec checkpatch.pl --terse --no-tree --file {} \;
+find src/ -name "*.c" -type f -exec checkpatch.pl --no-tree --terse --strict --file {} \;
 ```
 
 ```
 for f in ./*.c
 do
-	checkpatch.pl --terse --no-tree --strict --file "${f}"
+	checkpatch.pl --no-tree --terse --stric --file "${f}"
 done
 ```
 
