@@ -5624,6 +5624,7 @@ sub process {
 #Ignore some pango and libxml2 CamelCase variants
 			    $var !~ /^(?:PangoLayout|PangoFontDescription)/ &&
 			    $var !~ /^(?:PangoTabArray|PangoRectangle)/ &&
+			    $var !~ /^(?:PangoWeight|_PangoFontDescription)/ &&
 			    $var !~ /^(?:xmlNode|xmlIsBlankNode|xmlAttr)/ &&
 			    $var !~ /^(?:xmlGetProp|xmlChar|xmlDoc)/ &&
 			    $var !~ /^(?:xmlReadFile|xmlDocGetRootElement)/ &&
