@@ -62,6 +62,7 @@ my @ignore = (
 	"OPEN_ENDED_LINE",
 	"MACRO_ARG_REUSE",
 	"PREFER_FALLTHROUGH",
+	"ARRAY_SIZE",
 );
 my $help = 0;
 my $configuration_file = ".checkpatch.conf";
@@ -4530,6 +4531,19 @@ sub process {
 			WARN("STATIC_CONST_CHAR_ARRAY",
 			     "char * array declaration might be better as static const\n" .
 				$herecurr);
+		}
+
+# check for sizeof(foo)/sizeof(foo[0]) that could be ARRAY_SIZE(foo)
+		if ($line =~ m@\bsizeof\s*\(\s*($Lval)\s*\)@) {
+			my $array = $1;
+			if ($line =~ m@\b(sizeof\s*\(\s*\Q$array\E\s*\)\s*/\s*sizeof\s*\(\s*\Q$array\E\s*\[\s*0\s*\]\s*\))@) {
+				my $array_div = $1;
+				if (WARN("ARRAY_SIZE",
+					 "Prefer ARRAY_SIZE($array)\n" . $herecurr) &&
+				    $fix) {
+					$fixed[$fixlinenr] =~ s/\Q$array_div\E/ARRAY_SIZE($array)/;
+				}
+			}
 		}
 
 # check for function declarations without arguments like "int foo()"
