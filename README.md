@@ -1,3 +1,6 @@
+This projects has migrated to the `scripts` folder of https://github.com/labwc/labwc
+
+
 Quick hack on the linux kernel [checkpatch.pl] to lint C files written
 according to Drew Devault's [cstyle]
 
